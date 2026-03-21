@@ -1,0 +1,173 @@
+# Algorithm Deconstruction Report – Task Priority Sorting
+
+**Name:** Thabang Magwanya
+
+---
+
+## Introduction
+
+In this exercise, I analyzed the Task Priority Sorting Algorithm. At first, the code looked a bit confusing because there were many conditions affecting the score. However, after breaking it down step-by-step, I understood that the algorithm is simply trying to decide **which tasks are most important** using a scoring system.
+
+---
+
+## My Initial Understanding
+
+At first, I thought the algorithm just sorted tasks by priority (like high, medium, low).
+
+But after looking deeper, I realized it actually combines:
+
+* Priority
+* Due date
+* Task status
+* Tags
+* Last updated time
+
+So it’s more like a **smart ranking system**, not just simple sorting.
+
+---
+
+## Step-by-Step Breakdown
+
+### Step 1: Assign Base Score (Priority)
+
+Each task starts with a base score depending on its priority:
+
+* Low → 10
+* Medium → 20
+* High → 30/40
+* Urgent → 40/60
+
+👉 This means priority is the foundation of importance.
+
+---
+
+### Step 2: Check Due Date (Urgency Boost)
+
+The algorithm increases the score if the task is close to its deadline:
+
+* Overdue → +30 to +35
+* Due today → +20
+* Due soon (2 days) → +15
+* Due this week → +10
+
+👉 This makes sure urgent deadlines come first.
+
+---
+
+### Step 3: Reduce Score for Completed Tasks
+
+* Done → -50
+* Review → -15
+
+👉 This makes sense because completed tasks are no longer important.
+
+---
+
+### Step 4: Check Tags
+
+If a task has important tags like:
+
+* “urgent”
+* “critical”
+* “blocker”
+
+👉 It gets +8 points
+
+This helps highlight important work even more.
+
+---
+
+### Step 5: Recently Updated Tasks
+
+* If updated within 1 day → +5
+
+👉 This prioritizes active or recently worked-on tasks.
+
+---
+
+## Final Flow of the Algorithm
+
+```
+Task
+ ↓
+Calculate Base Score (priority)
+ ↓
+Adjust for due date
+ ↓
+Adjust for status
+ ↓
+Adjust for tags
+ ↓
+Adjust for recent updates
+ ↓
+Final Score
+ ↓
+Sort all tasks (highest → lowest)
+ ↓
+Return top tasks
+```
+
+---
+
+## Key Insights
+
+* The algorithm uses a **point-based system**
+* Multiple factors are combined into one score
+* It mimics real-life decision-making:
+
+  * Urgent + overdue = highest priority
+  * Completed = lowest priority
+
+---
+
+## Reflection
+
+### How did AI help me understand?
+
+AI helped me break the algorithm into smaller parts. Instead of seeing it as one big function, I started seeing it as **a series of small decisions**.
+
+---
+
+### What was still difficult?
+
+It was a bit confusing to track how all the score changes combine at the end. Small changes in one condition can affect the final ranking a lot.
+
+---
+
+### How would I explain this to another junior developer?
+
+I would say:
+
+> “This algorithm gives each task points based on how important it is. It adds points for urgency and priority, and removes points if the task is already done. Then it sorts everything so the most important tasks come first.”
+
+---
+
+### Did I test my understanding?
+
+Yes. I imagined different tasks, like:
+
+* A high-priority overdue task
+* A low-priority completed task
+
+And I checked how their scores would compare.
+
+---
+
+### How can the algorithm be improved?
+
+* Make the scoring system configurable instead of hardcoded
+* Reduce repeated date calculations (optimize performance)
+* Add more conditions like task category or user preference
+* Possibly use AI or machine learning for smarter prioritization
+
+---
+
+## Conclusion
+
+This algorithm is a good example of how real-world problems can be solved using simple logic. It takes different factors that affect task importance and combines them into a single score, making it easier to decide what to do first.
+
+---
+
+## Personal Reflection
+
+This exercise helped me understand that even complex-looking code can be broken down into simple steps. Next time I see a large function, I will focus on understanding it piece by piece instead of getting overwhelmed.
